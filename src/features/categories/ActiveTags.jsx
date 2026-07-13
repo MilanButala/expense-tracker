@@ -5,13 +5,13 @@ import { useExpenses } from "../../context/ExpenseContext";
 
 const ActiveTags = () => {
   const { categories, expenses, removeCategory } = useExpenses();
-
+  console.log(expenses);
   return (
     <Card title="Active Tags" className="h-full">
       <div className="space-y-3">
         {categories.map((category) => {
           const count = expenses.filter(
-            (exp) => exp.category?.toLowerCase() === category.id.toLowerCase()
+            (exp) => exp.category?.toLowerCase() === category.slug.toLowerCase()
           ).length;
 
           return (

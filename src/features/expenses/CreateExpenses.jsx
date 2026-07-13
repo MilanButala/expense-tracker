@@ -19,7 +19,8 @@ const CreateExpenses = () => {
   });
 
   const onSubmit = (data) => {
-    console.log('Create category:', data)
+    //console.log('Create category:', data)
+
   }
 
   return (
@@ -56,7 +57,7 @@ const CreateExpenses = () => {
               id="category"
               label="Category"
               register={register}
-              options={categories.map((c) => ({ value: c.id, label: c.label }))}
+              options={categories.map((categoryItem) => ({ value: categoryItem.id, label: categoryItem.label }))}
               validation={{
                 required: "Please select a category",
               }}

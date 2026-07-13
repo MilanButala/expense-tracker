@@ -32,7 +32,6 @@ const CreateCategory = () => {
     const generatedId = trimmedLabel
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-");
-
     if (!generatedId) {
       setError("categoryName", {
         type: "manual",

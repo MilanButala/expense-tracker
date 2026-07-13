@@ -28,5 +28,19 @@ export const expenseReducer = (state, action) => {
           (category) => category.id !== action.payload
         ),
       };
+    case "SET_EXPENSES":
+      return {
+        ...state,
+        expenses: action.payload,
+      };
+    case "DELETE_EXPENSE":
+      return {
+        ...state,
+        expenses: state.expenses.filter(
+          (expenses) => expenses.id !== action.payload
+        ),
+      };
+    default:
+      return state;
   }
 }

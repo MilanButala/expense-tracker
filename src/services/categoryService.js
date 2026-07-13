@@ -17,12 +17,13 @@ export const getCategories = async () => {
 export const addCategory = async (label, swatch) => {
   try {
     const id = label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, "-"); // due to the new db.json structure, we need to add a slug field
     const response = await fetch(`${BASE_URL}/categories`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ id, label, swatch }),
+      body: JSON.stringify({ id, slug, label, swatch }),
     });
 
     if (!response.ok) {

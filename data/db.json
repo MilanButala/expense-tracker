@@ -5,31 +5,37 @@
   "categories": [
     {
       "id": "shopping",
+      "slug": "shopping",
       "label": "Shopping",
       "swatch": "#C9A227"
     },
     {
       "id": "bills",
+      "slug": "bills",
       "label": "Bills",
       "swatch": "#3B5BA5"
     },
     {
       "id": "other",
+      "slug": "other",
       "label": "Other",
       "swatch": "#7A6A8A"
     },
     {
-      "id": "4HG9naaqK6Y",
+      "id": "food",
+      "slug": "food",
       "label": "Food",
       "swatch": "#A63D2F"
     },
     {
-      "id": "kaa1YBoYq2k",
+      "id": "travel",
+      "slug": "travel",
       "label": "Travel",
       "swatch": "#2F7A6B"
     },
     {
-      "id": "egzk6087u90",
+      "id": "rent",
+      "slug": "rent",
       "label": "Rent",
       "swatch": "#9E3B68"
     }
@@ -42,6 +48,14 @@
       "date": "2026-07-10",
       "note": "ddwdwdwd",
       "createdAt": "2026-07-10T08:39:53.832Z"
+    },
+    {
+      "id": "A0JyXUiNNmb",
+      "amount": 342,
+      "category": "food",
+      "date": "2026-08-10",
+      "note": "Test Note",
+      "createdAt": "2026-08-10T08:39:53.832Z"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

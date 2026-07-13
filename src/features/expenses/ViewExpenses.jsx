@@ -4,8 +4,12 @@ import Button from '../../ui/Button'
 import Table from '../../ui/Table'
 import { formatCurrency } from '../../utils/helper'
 import FilterBar from './FilterBar'
+import { useExpenses } from '../../context/ExpenseContext'
 
-const viewExpenses = () => {
+const ViewExpenses = () => {
+  const { expenses, categories, removeExpense } = useExpenses();
+  console.log(expenses);
+  // console.log(categories);
 
   const columns = [
     {
@@ -17,21 +21,24 @@ const viewExpenses = () => {
       header: "Category",
       accessor: "category",
       align: "text-left",
-      // render: (row) => {
-      //   const category = categories?.find(
-      //     (item) => item.id === row.category
-      //   );
+      render: (row) => {
+        console.log(row.category.toLowerCase());
+        const category = categories.find(
+          (item) => item.slug.toLowerCase() === row.category.toLowerCase()
+        );
 
-      //   return (
-      //     <div className="flex items-center gap-2">
-      //       <span
-      //         className="h-3 w-3 rounded-full"
-      //         style={{ backgroundColor: category?.swatch }}
-      //       />
-      //       <span>{category?.label}</span>
-      //     </div>
-      //   );
-      // }
+        return (
+          <div className="flex items-center gap-2">
+            <span
+              className="h-3 w-3 rounded-full"
+              style={{
+                backgroundColor: category?.swatch || "#ccc",
+              }}
+            />
+            <span>{category?.label || row.category}</span>
+          </div>
+        );
+      },
     },
     {
       header: "Note",
@@ -53,41 +60,13 @@ const viewExpenses = () => {
           <Button size="sm" variant="outline">
             Edit
           </Button>
-          <Button size="sm" variant="danger">
+          <Button size="sm" variant="danger" onClick={() => removeExpense(row.id)}>
             Delete
           </Button>
         </div>
       ),
     }
   ];
-
-  const expenses = [
-    {
-      id: 1,
-      date: "11 Jul 2026",
-      category: "Travel",
-      note: "Uber Ride",
-      amount: 450,
-      createdAt: "2026-07-10T08:39:53.832Z"
-    },
-    {
-      id: 2,
-      date: "10 Jul 2026",
-      category: "Food",
-      note: "Dinner",
-      amount: 850,
-      createdAt: "2026-07-10T08:39:53.832Z"
-    },
-    {
-      id: 3,
-      date: "09 Jul 2026",
-      category: "Shopping",
-      note: "T-Shirt",
-      amount: 1299,
-      createdAt: "2026-07-10T08:39:53.832Z"
-    },
-  ];
-
 
   return (
     <>
@@ -112,4 +91,4 @@ const viewExpenses = () => {
   )
 }
 
-export default viewExpenses
+export default ViewExpenses
