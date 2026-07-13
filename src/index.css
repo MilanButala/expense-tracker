@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Light Theme */
+  --color-primary: #173B7A;
+  --color-secondary: #255C8D;
+  --color-accent: #43B649;
+
+  --color-background: #FFFFFF;
+  --color-surface: #F8FAFC;
+  --color-card: #FFFFFF;
+
+  --color-text-primary: #1F2937;
+  --color-text-secondary: #6B7280;
+
+  --color-border: #E5E7EB;
+
+  --color-success: #22C55E;
+  --color-danger: #EF4444;
+  --color-warning: #F59E0B;
+  --color-info: #3B82F6;
+
+  /* Optional Shades */
+  --color-primary-50: #EEF4FF;
+  --color-primary-100: #DCE8FF;
+  --color-primary-200: #B9D1FF;
+  --color-primary-300: #85B1FF;
+  --color-primary-400: #5A91F8;
+  --color-primary-500: #255C8D;
+  --color-primary-600: #2563EB;
+  --color-primary-700: #173B7A;
+  --color-primary-800: #122D5F;
+  --color-primary-900: #0D2145;
+}
+
+/* Dark Theme */
+.dark {
+  --color-primary: #60A5FA;
+  --color-secondary: #3B82F6;
+  --color-accent: #4ADE80;
+
+  --color-background: #0F172A;
+  --color-surface: #1E293B;
+  --color-card: #273449;
+
+  --color-text-primary: #F8FAFC;
+  --color-text-secondary: #CBD5E1;
+
+  --color-border: #334155;
+
+  --color-success: #22C55E;
+  --color-danger: #F87171;
+  --color-warning: #FBBF24;
+  --color-info: #60A5FA;
+}
+
+@layer base {
+
+  html,
+  body {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+  }
+}
+
+@layer components {
+  .navlink {
+    @apply block py-2 px-3 text-text-primary border-b border-border hover:bg-surface transition-colors duration-200 lg:border-0 lg:p-0 lg:hover:bg-transparent lg:hover:text-primary dark:text-text-secondary dark:border-border dark:hover:bg-surface dark:hover:text-text-primary lg:dark:hover:bg-transparent;
+
+    &.active {
+      @apply text-accent font-semibold;
+    }
+  }
+}
+
+@layer utilities {}
+
+.loader {
+  width: 45px;
+  aspect-ratio: 0.75;
+  --c: no-repeat linear-gradient(theme(colors.stone.800) 0 0);
+  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+  background-size: 20% 50%;
+  animation: loading 1s infinite linear;
+}
+
+@keyframes loading {
+  20% {
+    background-position: 0% 0%, 50% 50%, 100% 50%;
+  }
+
+  40% {
+    background-position: 0% 100%, 50% 0%, 100% 50%;
+  }
+
+  60% {
+    background-position: 0% 50%, 50% 100%, 100% 0%;
+  }
+
+  80% {
+    background-position: 0% 50%, 50% 50%, 100% 100%;
+  }
+}
