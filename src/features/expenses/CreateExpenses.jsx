@@ -6,22 +6,34 @@ import { useForm } from 'react-hook-form'
 import { useExpenses } from '../../context/ExpenseContext'
 
 const CreateExpenses = () => {
-  const { categories } = useExpenses();
+  const { categories, addExpenses } = useExpenses();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting  },
   } = useForm({
     defaultValues: {
-      expenseDate: new Date().toISOString().split("T")[0],
+      date: new Date().toISOString().split("T")[0],
     },
+
   });
 
-  const onSubmit = (data) => {
-    //console.log('Create category:', data)
+  const onSubmit = async (data) => {
+    try {
+      await addExpenses(data);
 
-  }
+      reset({
+        amount: "",
+        category: "",
+        date: new Date().toISOString().split("T")[0],
+        note: "",
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >
@@ -38,6 +50,7 @@ const CreateExpenses = () => {
               placeholder="0.00"
               register={register}
               validation={{
+                valueAsNumber: true,
                 required: "Amount is required",
                 min: {
                   value: 1,
@@ -67,13 +80,13 @@ const CreateExpenses = () => {
           </div>
           <div className="md:w-1/3">
             <DatePicker
-              id="expenseDate"
+              id="date"
               label="Expense Date"
               register={register}
               validation={{
                 required: "Please select a date",
               }}
-              error={errors.expenseDate}
+              error={errors.date}
               required
             />
           </div>
@@ -100,11 +113,27 @@ const CreateExpenses = () => {
             required
           />
         </div>
-        <div className="flex gap-5 justify-end">
-          <Button type="submit">
-            Add expense
+        <div className="flex justify-end gap-5">
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Saving..." : "Add Expense"}
           </Button>
-          <Button variant='danger' type="reset">
+
+          <Button
+            type="button"
+            variant="danger"
+            disabled={isSubmitting}
+            onClick={() =>
+              reset({
+                amount: "",
+                category: "",
+                date: new Date().toISOString().split("T")[0],
+                note: "",
+              })
+            }
+          >
             Reset
           </Button>
         </div>

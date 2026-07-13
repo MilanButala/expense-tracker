@@ -33,6 +33,11 @@ export const expenseReducer = (state, action) => {
         ...state,
         expenses: action.payload,
       };
+    case "ADD_EXPENSE":
+      return {
+        ...state,
+        expenses: [...state.expenses, action.payload],
+      };
     case "DELETE_EXPENSE":
       return {
         ...state,

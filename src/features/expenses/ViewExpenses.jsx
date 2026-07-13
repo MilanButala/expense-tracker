@@ -8,7 +8,7 @@ import { useExpenses } from '../../context/ExpenseContext'
 
 const ViewExpenses = () => {
   const { expenses, categories, removeExpense } = useExpenses();
-  console.log(expenses);
+  // console.log(expenses);
   // console.log(categories);
 
   const columns = [

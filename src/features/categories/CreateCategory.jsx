@@ -16,7 +16,7 @@ const CreateCategory = () => {
     setError,
     clearErrors,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       categoryName: "",
@@ -101,8 +101,8 @@ const CreateCategory = () => {
           }}
           error={errors.color}
         />
-        <Button type="submit">
-          Add Category
+        <Button type="submit" disabled={isSubmitting}>
+           {isSubmitting ? "Saving..." : "Add Category"}
         </Button>
       </form>
     </Card>
