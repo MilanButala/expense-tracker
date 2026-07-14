@@ -1,7 +1,7 @@
 import React, { useEffect, createContext, useContext, useReducer } from 'react'
 import { expenseReducer, initialState } from './ExpenseReducer';
 import { getCategories, deleteCategory, addCategory as apiAddCategory } from "../services/categoryService";
-import { getExpenses, addExpense, deleteExpense } from '../services/expenseService';
+import { getExpenses, addExpense, updateExpense, deleteExpense } from '../services/expenseService';
 
 const ExpenseContext = createContext();
 
@@ -70,9 +70,9 @@ export function ExpenseProvider({ children }) {
     }
   }
 
-  const addExpenses = async (expenseDate, amount, category, note) => {
+  const addExpenses = async (expenseData) => {
     try {
-      const newExpenses = await addExpense(expenseDate, amount, category, note);
+      const newExpenses = await addExpense(expenseData);
 
       dispatch({
         type: "ADD_EXPENSE",
@@ -85,6 +85,22 @@ export function ExpenseProvider({ children }) {
       return null;
     }
   };
+
+  const updateExpenses = async (id, expenseData) => {
+    try {
+      const updatedExpense = await updateExpense(id, expenseData);
+
+      dispatch({
+        type: "UPDATE_EXPENSE",
+        payload: updatedExpense,
+      });
+
+      return updatedExpense;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
 
   const removeExpense = async (id) => {
     try {
@@ -113,6 +129,7 @@ export function ExpenseProvider({ children }) {
       removeCategory,
       loadExpenses,
       addExpenses,
+      updateExpenses,
       removeExpense
     }}>
       {children}

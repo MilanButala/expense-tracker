@@ -38,6 +38,13 @@ export const expenseReducer = (state, action) => {
         ...state,
         expenses: [...state.expenses, action.payload],
       };
+    case "UPDATE_EXPENSE":
+      return {
+        ...state,
+        expenses: state.expenses.map((expense) =>
+          expense.id === action.payload.id ? action.payload : expense
+        ),
+      };
     case "DELETE_EXPENSE":
       return {
         ...state,

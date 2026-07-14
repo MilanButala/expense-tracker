@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '../../ui/Card'
 import Button from '../../ui/Button'
 import Table from '../../ui/Table'
 import { formatCurrency } from '../../utils/helper'
 import FilterBar from './FilterBar'
 import { useExpenses } from '../../context/ExpenseContext'
+import Modal from '../../ui/Modal'
+import CreateExpenses from './CreateExpenses'
 
 const ViewExpenses = () => {
   const { expenses, categories, removeExpense } = useExpenses();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedExpense, setSelectedExpense] = useState(null);
   // console.log(expenses);
   // console.log(categories);
 
@@ -22,7 +26,7 @@ const ViewExpenses = () => {
       accessor: "category",
       align: "text-left",
       render: (row) => {
-        console.log(row.category.toLowerCase());
+        //console.log(row.category.toLowerCase());
         const category = categories.find(
           (item) => item.slug.toLowerCase() === row.category.toLowerCase()
         );
@@ -57,7 +61,10 @@ const ViewExpenses = () => {
       align: "text-right",
       render: (row) => (
         <div className="flex justify-end gap-2">
-          <Button size="sm" variant="outline">
+          <Button size="sm" variant="outline" onClick={() => {
+            setSelectedExpense(row);
+            setIsOpen(true);
+          }}>
             Edit
           </Button>
           <Button size="sm" variant="danger" onClick={() => removeExpense(row.id)}>
@@ -87,6 +94,16 @@ const ViewExpenses = () => {
           <td></td>
         </>
       } />
+      <Modal
+        isOpen={isOpen}
+        title="Edit Expense"
+        onClose={() => setIsOpen(false)}
+      >
+        <CreateExpenses
+          expense={selectedExpense}
+          onClose={() => setIsOpen(false)}
+        />
+      </Modal>
     </>
   )
 }

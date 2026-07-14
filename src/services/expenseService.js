@@ -23,7 +23,7 @@ export const addExpense = async (expenses) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({id, createdAt, ...expenses}),
+      body: JSON.stringify({ id, createdAt, ...expenses }),
     });
     if (!response.ok) throw Error("Failed add expenses");
     const data = await response.json();
@@ -33,6 +33,26 @@ export const addExpense = async (expenses) => {
     throw new Error(error.message || "Something went wrong.");
   }
 }
+
+export const updateExpense = async (id, updatedExpense) => {
+  try {
+    const response = await fetch(`${BASE_URL}/expenses/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedExpense),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update expense.");
+    }
+
+    return await response.json();
+  } catch (error) {
+    throw new Error(error.message || "Something went wrong.");
+  }
+};
 
 export const deleteExpense = async (id) => {
   try {
