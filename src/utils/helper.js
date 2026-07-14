@@ -16,11 +16,11 @@ export function formatCurrency(value) {
   }).format(amount);
 }
 
-export function formatDate(dateStr) {
-  return new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "short",
-    hour: "2-digit",
-    minute: "2-digit",
-  }).format(new Date(dateStr));
+export function isSameMonth(isoDate, reference = new Date()) {
+  if (!isoDate) return false;
+  const d = new Date(isoDate + "T00:00:00");
+  return (
+    d.getFullYear() === reference.getFullYear() &&
+    d.getMonth() === reference.getMonth()
+  );
 }
