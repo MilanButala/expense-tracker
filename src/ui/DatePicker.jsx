@@ -59,7 +59,7 @@ const DatePicker = ({
 DatePicker.propTypes = {
   label: PropTypes.string,
   id: PropTypes.string.isRequired,
-  register: PropTypes.func.isRequired,
+  register: PropTypes.func,
   validation: PropTypes.object,
   error: PropTypes.object,
   required: PropTypes.bool,

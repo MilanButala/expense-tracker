@@ -11,7 +11,7 @@ const Button = ({
   ...props
 }) => {
   const baseClass =
-    "inline-flex items-center justify-center cursor-pointer rounded-lg font-medium transition-all duration-200";
+    "inline-flex items-center justify-center cursor-pointer rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
     primary: "bg-primary text-white hover:bg-primary-900",

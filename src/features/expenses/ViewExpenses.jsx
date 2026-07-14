@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Card from '../../ui/Card'
 import Button from '../../ui/Button'
 import Table from '../../ui/Table'
 import { formatCurrency } from '../../utils/helper'
@@ -12,8 +11,44 @@ const ViewExpenses = () => {
   const { expenses, categories, removeExpense } = useExpenses();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedExpense, setSelectedExpense] = useState(null);
-  // console.log(expenses);
-  // console.log(categories);
+  const [activeFilters, setActiveFilters] = useState({
+    search: "",
+    category: "",
+    from: "",
+    to: "",
+  });
+
+  const filteredExpenses = expenses.filter((expense) => {
+    // console.log("filtering expense:", expense.note, "date:", expense.date, "activeFilters:", activeFilters);
+
+    // 1. Filter by Search Query (matching note)
+    if (activeFilters.search) {
+      const term = activeFilters.search.toLowerCase();
+      const noteMatch = expense.note?.toLowerCase().includes(term);
+      if (!noteMatch) return false;
+    }
+
+    // 2. Filter by Category
+    if (activeFilters.category) {
+      if (expense.category?.toLowerCase() !== activeFilters.category.toLowerCase()) {
+        return false;
+      }
+    }
+
+    // 3. Filter by Date range From and To
+    const itemDate = expense.date || expense.expenseDate;
+    if (itemDate) {
+      const dateStr = itemDate.substring(0, 10);
+      if (activeFilters.from && dateStr < activeFilters.from) {
+        return false;
+      }
+      if (activeFilters.to && dateStr > activeFilters.to) {
+        return false;
+      }
+    }
+
+    return true;
+  });
 
   const columns = [
     {
@@ -77,18 +112,18 @@ const ViewExpenses = () => {
 
   return (
     <>
-      <FilterBar />
-      <Table className="mt-10" columns={columns} data={expenses} footer={
+      <FilterBar onFilterChange={setActiveFilters} />
+      <Table className="mt-10" columns={columns} data={filteredExpenses} footer={
         <>
           <td
             colSpan={3}
             className="px-4 py-3 font-semibold"
           >
-            {expenses.length} entries shown
+            {filteredExpenses.length} entries shown
           </td>
 
           <td className="px-4 py-3 text-center font-bold">
-            {formatCurrency(expenses.reduce((accum, currant) => accum + currant.amount, 0))}
+            {formatCurrency(filteredExpenses.reduce((accum, currant) => accum + currant.amount, 0))}
           </td>
 
           <td></td>
