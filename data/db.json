@@ -1,6 +1,6 @@
 {
   "budget": {
-    "amount": 3333
+    "amount": 7000
   },
   "categories": [
     {
@@ -32,6 +32,18 @@
       "slug": "travel",
       "label": "Travel",
       "swatch": "#2F7A6B"
+    },
+    {
+      "id": "LLxzhMwhZAo",
+      "slug": "wwwwffwf",
+      "label": "wwwwffwf",
+      "swatch": "#A63D2F"
+    },
+    {
+      "id": "kW8TPPy_4yk",
+      "slug": "test",
+      "label": "Test",
+      "swatch": "#7A6A8A"
     }
   ],
   "expenses": [
@@ -95,6 +107,13 @@
       "category": "bills",
       "date": "2026-07-15",
       "note": "eqeqee"
+    },
+    {
+      "amount": 125,
+      "category": "test",
+      "date": "2026-07-14",
+      "note": "Test Notes test",
+      "id": "FH48mP2I1G4"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

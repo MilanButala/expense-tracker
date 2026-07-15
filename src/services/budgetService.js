@@ -1,12 +1,14 @@
-import BASE_URL from "./api";
+import { BUDGET_URL } from "./api";
+const BUDGET_ID = 1; // Assuming there's only one budget entry with ID 1 for Using MockAPI
 
 export const getBudget = async () => {
   try {
-    const res = await fetch(`${BASE_URL}/budget`);
+    const res = await fetch(`${BUDGET_URL}/budget/${BUDGET_ID}`);
 
     if (!res.ok) throw Error("Failed getting budget");
 
     const data = await res.json();
+    console.log("Budget data:", data); // Log the budget data for debugging
     return data.data || data;
   }
   catch (error) {
@@ -16,7 +18,7 @@ export const getBudget = async () => {
 
 export const updateBudget = async (amount) => {
   try {
-    const response = await fetch(`${BASE_URL}/budget`, {
+    const response = await fetch(`${BUDGET_URL}/budget/${BUDGET_ID}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
