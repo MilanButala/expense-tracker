@@ -3,7 +3,7 @@ import { expenseReducer, initialState } from './ExpenseReducer';
 import { getCategories, deleteCategory, addCategory as apiAddCategory } from "../services/categoryService";
 import { getExpenses, addExpense, updateExpense, deleteExpense } from '../services/expenseService';
 import { getBudget, updateBudget } from '../services/budgetService';
-
+import * as ACTIONS from "./actionTypes";
 const ExpenseContext = createContext();
 
 export function ExpenseProvider({ children }) {
@@ -17,7 +17,7 @@ export function ExpenseProvider({ children }) {
       const data = await getCategories();
 
       dispatch({
-        type: "SET_CATEGORIES",
+        type: "ACTIONS.SET_CATEGORIES",
         payload: data,
       });
     } catch (error) {
@@ -30,7 +30,7 @@ export function ExpenseProvider({ children }) {
       const newCategory = await apiAddCategory(label, swatch);
 
       dispatch({
-        type: "ADD_CATEGORY",
+        type: "ACTIONS.ADD_CATEGORY",
         payload: newCategory,
       });
 
@@ -46,7 +46,7 @@ export function ExpenseProvider({ children }) {
       await deleteCategory(id);
 
       dispatch({
-        type: "DELETE_CATEGORY",
+        type: "ACTIONS.DELETE_CATEGORY",
         payload: id,
       });
 
@@ -62,7 +62,7 @@ export function ExpenseProvider({ children }) {
       const data = await getExpenses();
       //console.log(data);
       dispatch({
-        type: 'SET_EXPENSES',
+        type: 'ACTIONS.SET_EXPENSES',
         payload: data
       })
     }
@@ -76,7 +76,7 @@ export function ExpenseProvider({ children }) {
       const newExpenses = await addExpense(expenseData);
 
       dispatch({
-        type: "ADD_EXPENSE",
+        type: "ACTIONS.ADD_EXPENSE",
         payload: newExpenses,
       });
 
@@ -92,7 +92,7 @@ export function ExpenseProvider({ children }) {
       const updatedExpense = await updateExpense(id, expenseData);
 
       dispatch({
-        type: "UPDATE_EXPENSE",
+        type: "ACTIONS.UPDATE_EXPENSE",
         payload: updatedExpense,
       });
 
@@ -107,7 +107,7 @@ export function ExpenseProvider({ children }) {
     try {
       await deleteExpense(id);
       dispatch({
-        type: 'DELETE_EXPENSE',
+        type: 'ACTIONS.DELETE_EXPENSE',
         payload: id,
       })
     }
@@ -121,7 +121,7 @@ export function ExpenseProvider({ children }) {
       const data = await getBudget();
       //console.log(data);
       dispatch({
-        type: 'SET_BUDGETS',
+        type: 'ACTIONS.SET_BUDGETS',
         payload: data
       })
     }
@@ -134,7 +134,7 @@ export function ExpenseProvider({ children }) {
     try {
       const updatedBudget = await updateBudget(amount);
       dispatch({
-        type: "SET_BUDGETS",
+        type: "ACTIONS.SET_BUDGETS",
         payload: updatedBudget,
       });
       return updatedBudget;

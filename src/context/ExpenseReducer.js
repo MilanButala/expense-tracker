@@ -11,48 +11,48 @@ export const initialState = {
 
 export const expenseReducer = (state, action) => {
   switch (action.type) {
-    case "SET_CATEGORIES":
+    case "ACTIONS.SET_CATEGORIES":
       return {
         ...state,
         categories: action.payload,
       };
-    case "ADD_CATEGORY":
+    case "ACTIONS.ADD_CATEGORY":
       return {
         ...state,
         categories: [...state.categories, action.payload],
       };
-    case "DELETE_CATEGORY":
+    case "ACTIONS.DELETE_CATEGORY":
       return {
         ...state,
         categories: state.categories.filter(
           (category) => category.id !== action.payload
         ),
       };
-    case "SET_EXPENSES":
+    case "ACTIONS.SET_EXPENSES":
       return {
         ...state,
         expenses: action.payload,
       };
-    case "ADD_EXPENSE":
+    case "ACTIONS.ADD_EXPENSE":
       return {
         ...state,
         expenses: [...state.expenses, action.payload],
       };
-    case "UPDATE_EXPENSE":
+    case "ACTIONS.UPDATE_EXPENSE":
       return {
         ...state,
         expenses: state.expenses.map((expense) =>
           expense.id === action.payload.id ? action.payload : expense
         ),
       };
-    case "DELETE_EXPENSE":
+    case "ACTIONS.DELETE_EXPENSE":
       return {
         ...state,
         expenses: state.expenses.filter(
           (expenses) => expenses.id !== action.payload
         ),
       };
-       case "SET_BUDGETS":
+       case "ACTIONS.SET_BUDGETS":
       return {
         ...state,
         budgets: action.payload,
