@@ -36,12 +36,11 @@
   ],
   "expenses": [
     {
-      "id": "A0JyXUiNNmb",
-      "amount": 342,
+      "amount": 400,
       "category": "food",
       "date": "2026-08-10",
       "note": "Test Note",
-      "createdAt": "2026-08-10T08:39:53.832Z"
+      "id": "A0JyXUiNNmb"
     },
     {
       "amount": 211,
