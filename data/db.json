@@ -1,6 +1,6 @@
 {
   "budget": {
-    "amount": 22222
+    "amount": 3333
   },
   "categories": [
     {
@@ -87,6 +87,14 @@
       "category": "shopping",
       "date": "2026-07-10",
       "note": "Test expense for date 10"
+    },
+    {
+      "id": "wEWOJET33E8",
+      "createdAt": "2026-07-15T12:26:12.520Z",
+      "amount": 2333,
+      "category": "bills",
+      "date": "2026-07-15",
+      "note": "eqeqee"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
