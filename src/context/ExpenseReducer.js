@@ -3,7 +3,7 @@ import * as ACTIONS from "./actionTypes";
 export const initialState = {
   categories: [],
   expenses: [],
-  budget: {
+  budgets: {
     amount: 0,
   },
   loading: false,
@@ -51,6 +51,11 @@ export const expenseReducer = (state, action) => {
         expenses: state.expenses.filter(
           (expenses) => expenses.id !== action.payload
         ),
+      };
+       case "SET_BUDGETS":
+      return {
+        ...state,
+        budgets: action.payload,
       };
     default:
       return state;

@@ -2,6 +2,7 @@ import React, { useEffect, createContext, useContext, useReducer } from 'react'
 import { expenseReducer, initialState } from './ExpenseReducer';
 import { getCategories, deleteCategory, addCategory as apiAddCategory } from "../services/categoryService";
 import { getExpenses, addExpense, updateExpense, deleteExpense } from '../services/expenseService';
+import { getBudget, updateBudget } from '../services/budgetService';
 
 const ExpenseContext = createContext();
 
@@ -115,9 +116,39 @@ export function ExpenseProvider({ children }) {
     }
   }
 
+  const loadBudget = async () => {
+    try {
+      const data = await getBudget();
+      //console.log(data);
+      dispatch({
+        type: 'SET_BUDGETS',
+        payload: data
+      })
+    }
+    catch (error) {
+      console.error(error)
+    }
+  }
+
+  const updateBudgetAmount = async (amount) => {
+    try {
+      const updatedBudget = await updateBudget(amount);
+      dispatch({
+        type: "SET_BUDGETS",
+        payload: updatedBudget,
+      });
+      return updatedBudget;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+
   useEffect(() => {
     loadCategories();
     loadExpenses();
+    loadBudget();
   }, []);
 
 
@@ -130,7 +161,9 @@ export function ExpenseProvider({ children }) {
       loadExpenses,
       addExpenses,
       updateExpenses,
-      removeExpense
+      removeExpense,
+      loadBudget,
+      updateBudgetAmount,
     }}>
       {children}
     </ExpenseContext.Provider>

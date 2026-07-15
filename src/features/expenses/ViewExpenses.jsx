@@ -6,6 +6,7 @@ import FilterBar from './FilterBar'
 import { useExpenses } from '../../context/ExpenseContext'
 import Modal from '../../ui/Modal'
 import CreateExpenses from './CreateExpenses'
+import EmptyState from '../../ui/EmptyState'
 
 const ViewExpenses = () => {
   const { expenses, categories, removeExpense } = useExpenses();
@@ -113,7 +114,18 @@ const ViewExpenses = () => {
   return (
     <>
       <FilterBar onFilterChange={setActiveFilters} />
-      <Table className="mt-10" columns={columns} data={filteredExpenses} footer={
+      <Table className="mt-10" columns={columns} data={filteredExpenses} emptyMessage={
+        <EmptyState
+          title="No Expenses Found"
+          message="You haven't added any expenses yet. Start by creating your first expense."
+          action={
+            <Button to="/add-expenses">
+              Add Expense
+            </Button>
+          }
+        />
+
+      } footer={
         <>
           <td
             colSpan={3}

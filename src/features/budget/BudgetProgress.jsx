@@ -4,12 +4,10 @@ import InputField from "../../ui/InputField";
 import { formatCurrency } from "../../utils/helper";
 import { useForm } from 'react-hook-form'
 
-const BudgetProgress = ({
-  budget,
-  spent,
-  onSave,
-}) => {
+const BudgetProgress = ({ budget, spent, onSave }) => {
+
   const [isEditing, setIsEditing] = useState(false);
+  
   const [amount, setAmount] = useState(budget ?? 0);
 
   const percentage = budget > 0 ? Math.min((spent / budget) * 100, 100) : 0;
@@ -18,18 +16,10 @@ const BudgetProgress = ({
 
   const progressColor = percentage >= 100 ? "bg-danger" : percentage >= 80 ? "bg-warning" : "bg-success";
 
-  const handleEdit = () => {
-    setAmount(budget ?? 0);
-    setIsEditing(true);
-  };
-
-  // const handleSave = () => {
-  //   onSave?.(Number(amount));
-  //   setIsEditing(false);
-  // };
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -37,17 +27,21 @@ const BudgetProgress = ({
     }
   });
 
+  const handleEdit = () => {
+    reset({ amount: budget ?? 0 });
+    setIsEditing(true);
+  };
+
   const onSubmit = (data) => {
     onSave?.(Number(data.amount));
     setIsEditing(false);
   }
 
-
   return (
     <>
       {isEditing ? (
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex items-end gap-4">
+          <div className="flex items-start gap-4">
             <div className="flex-1">
               <InputField
                 id="amount"
@@ -81,7 +75,6 @@ const BudgetProgress = ({
       ) : (
         <>
           <div className="h-3 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
-            
             <div
               className={`h-full rounded-full transition-all duration-500 ${progressColor}`}
               style={{ width: `${percentage}%` }}
@@ -94,16 +87,16 @@ const BudgetProgress = ({
             </span>
           </div>
           <div className="mt-4">
-            <span className="text-base font-semibold text-secondary">
+            <span className="text-xl font-semibold text-primary">
               {formatCurrency(spent)} of{" "}
               {formatCurrency(budget)} ({percentage.toFixed(0)}%)
             </span>
-            </div>
+          </div>
           <div className="mt-6 flex justify-end border-t border-border pt-6">
             <Button
               size="sm"
               variant="accent"
-              onClick={handleEdit}        >
+              onClick={handleEdit}>
               EDIT
             </Button>
           </div>
