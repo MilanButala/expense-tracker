@@ -58,53 +58,55 @@ const Dashboard = () => {
     .filter((category) => category.amount > 0)
     .sort((a, b) => b.amount - a.amount), [categoryTotals, categories]);
   //console.log(categoryBreakdown)
+
   return (
     <>
       <PageTitle
         title="Dashboard"
         subTitle="Where your money has been going."
       />
-
-      <div className="flex gap-6 flex-col">
-        <div className="flex flex-col gap-6 md:flex-row">
-          <div className="md:w-1/3">
-            <CardSmall title="Total logged" className="h-full">
-              <p className="text-2xl font-bold text-accent">{formatCurrency(totalSpend)}</p>
-            </CardSmall>
-          </div>
-          <div className="md:w-1/3">
-            <CardSmall title="This month" className="h-full">
-              <p className="text-2xl font-bold text-accent">{formatCurrency(monthSpend)}</p>
-            </CardSmall>
-          </div>
-          <div className="md:w-1/3" >
-            <CardSmall title="Top category this month" className="h-full">
-              {topCategoryData && (
-                <div className="flex items-center gap-3">
-                  <span className="h-4 w-4 rounded-full" style={{ backgroundColor: topCategoryData?.swatch }}></span>
-                  <div>
-                    <h4 className="font-medium text-text-primary">{topCategoryData?.label}</h4>
+      <div className="bg-lightgray dark:bg-gray-400 p-6 rounded-2xl">
+        <div className="flex gap-6 flex-col">
+          <div className="flex flex-col gap-6 md:flex-row">
+            <div className="md:w-1/3">
+              <CardSmall title="Total logged" className="h-full">
+                <p className="text-2xl font-bold text-cyan-400">{formatCurrency(totalSpend)}</p>
+              </CardSmall>
+            </div>
+            <div className="md:w-1/3">
+              <CardSmall title="This month" className="h-full">
+                <p className="text-2xl font-bold text-fuchsia-900">{formatCurrency(monthSpend)}</p>
+              </CardSmall>
+            </div>
+            <div className="md:w-1/3" >
+              <CardSmall title="Top category this month" className="h-full">
+                {topCategoryData && (
+                  <div className="flex items-center gap-3">
+                    <span className="h-4 w-4 rounded-full" style={{ backgroundColor: topCategoryData?.swatch }}></span>
+                    <div>
+                      <h4 className="font-medium text-text-primary">{topCategoryData?.label}</h4>
+                    </div>
                   </div>
-                </div>
-              )}
-            </CardSmall>
+                )}
+              </CardSmall>
+            </div>
           </div>
-        </div>
 
-        <div className="flex flex-col gap-6 md:flex-row">
-          <div className="md:w-1/2">
-            <Card title="Spend by category" className="h-full">
-              <ExpenseBreakdown data={categoryBreakdown} />
-            </Card>
-          </div>
-          <div className="md:w-1/2">
-            <Card title="Monthly budget" className="h-full">
-              <BudgetProgress
-                budget={budget}
-                spent={categoryBreakdown.reduce((sum, item) => sum + item.amount, 0)}
-                onSave={setBudget}
-              />
-            </Card>
+          <div className="flex flex-col gap-6 md:flex-row">
+            <div className="md:w-1/2">
+              <Card title="Spend by category" className="h-full">
+                <ExpenseBreakdown data={categoryBreakdown} />
+              </Card>
+            </div>
+            <div className="md:w-1/2">
+              <Card title="Monthly budget" className="h-full">
+                <BudgetProgress
+                  budget={budget}
+                  spent={categoryBreakdown.reduce((sum, item) => sum + item.amount, 0)}
+                  onSave={setBudget}
+                />
+              </Card>
+            </div>
           </div>
         </div>
       </div>

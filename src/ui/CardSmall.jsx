@@ -7,7 +7,7 @@ const CardSmall = ({
   bodyClassName = "",
 }) => {
   return (
-    <div className={`rounded-xl border border-border border-t-4 border-primary bg-card shadow-sm ${className}`}
+    <div className={`rounded-xl bg-card dark:shadow-dark-sm shadow-sm !border-none dark:!border-none ${className}`}
     >
       {(title) && (
         <div className="px-6 pt-4 pb-2">

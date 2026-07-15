@@ -101,7 +101,7 @@ const CreateCategory = () => {
           }}
           error={errors.color}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button variant='accent' type="submit" disabled={isSubmitting} className="mt-6">
            {isSubmitting ? "Saving..." : "Add Category"}
         </Button>
       </form>

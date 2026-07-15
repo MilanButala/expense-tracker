@@ -73,7 +73,7 @@ const BudgetProgress = ({
               />
             </div>
 
-            <Button type="submit">
+            <Button variant="accent" type="submit">
               SAVE
             </Button>
           </div>
@@ -81,6 +81,7 @@ const BudgetProgress = ({
       ) : (
         <>
           <div className="h-3 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+            
             <div
               className={`h-full rounded-full transition-all duration-500 ${progressColor}`}
               style={{ width: `${percentage}%` }}
@@ -91,16 +92,17 @@ const BudgetProgress = ({
             <span className="font-semibold text-success">
               {status}
             </span>
-
-            <span>
+          </div>
+          <div className="mt-4">
+            <span className="text-base font-semibold text-secondary">
               {formatCurrency(spent)} of{" "}
               {formatCurrency(budget)} ({percentage.toFixed(0)}%)
             </span>
-          </div>
-          <div className="mt-3 flex justify-end">
+            </div>
+          <div className="mt-6 flex justify-end border-t border-border pt-6">
             <Button
               size="sm"
-              variant="primary"
+              variant="accent"
               onClick={handleEdit}        >
               EDIT
             </Button>

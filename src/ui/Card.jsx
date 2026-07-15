@@ -8,7 +8,7 @@ const Card = ({
   bodyClassName = "",
 }) => {
   return (
-    <div className={`rounded-xl border border-border bg-card shadow-sm ${className}`}
+    <div className={`rounded-xl bg-card dark:shadow-dark-sm shadow-sm !border-none dark:!border-none ${className}`}
     >
       {(title || subTitle) && (
         <div className="border-b border-border px-6 py-4">

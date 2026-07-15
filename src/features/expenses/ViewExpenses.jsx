@@ -96,7 +96,7 @@ const ViewExpenses = () => {
       align: "text-right",
       render: (row) => (
         <div className="flex justify-end gap-2">
-          <Button size="sm" variant="outline" onClick={() => {
+          <Button size="sm" variant="accent" onClick={() => {
             setSelectedExpense(row);
             setIsOpen(true);
           }}>

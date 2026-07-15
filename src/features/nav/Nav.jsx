@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavItems from "./NavItems";
+import { useLocation } from "react-router-dom";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
 
   const links = [
     { to: "/dashboard", label: "Dashboard" },
     { to: "/add-expenses", label: "Add Expenses" },
     { to: "/expenses", label: "Expenses" },
-    { to: "/categories", label: "Categories" },    
+    { to: "/categories", label: "Categories" },
   ];
+
+  useEffect(() => {
+    setOpen(false);    
+  }, [location.pathname]);
 
   return (
     <>

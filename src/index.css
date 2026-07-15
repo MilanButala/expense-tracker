@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -7,7 +8,7 @@
   /* Light Theme */
   --color-primary: #173B7A;
   --color-secondary: #255C8D;
-  --color-accent: #43B649;
+  --color-accent: #539155;
 
   --color-background: #FFFFFF;
   --color-surface: #F8FAFC;
@@ -34,6 +35,8 @@
   --color-primary-700: #173B7A;
   --color-primary-800: #122D5F;
   --color-primary-900: #0D2145;
+
+  --color-lightgray: #f4f7fb;
 }
 
 /* Dark Theme */
@@ -61,7 +64,9 @@
 
   html,
   body {
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
+    font-family: "Manrope", sans-serif;
+    font-optical-sizing: auto;
     font-weight: 400;
   }
 }
@@ -81,26 +86,44 @@
 .loader {
   width: 45px;
   aspect-ratio: 0.75;
-  --c: no-repeat linear-gradient(theme(colors.stone.800) 0 0);
-  background: var(--c) 0% 50%, var(--c) 50% 50%, var(--c) 100% 50%;
+  --loader-color: #2563eb; /* Blue */
+  --c: no-repeat linear-gradient(var(--loader-color) 0 0);
+
+  background:
+    var(--c) 0% 50%,
+    var(--c) 50% 50%,
+    var(--c) 100% 50%;
+
   background-size: 20% 50%;
   animation: loading 1s infinite linear;
 }
 
 @keyframes loading {
   20% {
-    background-position: 0% 0%, 50% 50%, 100% 50%;
+    background-position:
+      0% 0%,
+      50% 50%,
+      100% 50%;
   }
 
   40% {
-    background-position: 0% 100%, 50% 0%, 100% 50%;
+    background-position:
+      0% 100%,
+      50% 0%,
+      100% 50%;
   }
 
   60% {
-    background-position: 0% 50%, 50% 100%, 100% 0%;
+    background-position:
+      0% 50%,
+      50% 100%,
+      100% 0%;
   }
 
   80% {
-    background-position: 0% 50%, 50% 50%, 100% 100%;
+    background-position:
+      0% 50%,
+      50% 50%,
+      100% 100%;
   }
 }

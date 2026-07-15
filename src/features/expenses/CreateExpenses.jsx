@@ -149,13 +149,13 @@ const CreateExpenses = ({ expense = null, onClose }) => {
         />
 
         <div className="flex justify-end gap-5 border-t border-border pt-6">
-          <Button type="submit" disabled={isSubmitting}>
+          <Button variant='accent' type="submit" disabled={isSubmitting}>
             {isSubmitting ? "Saving..." : isEdit ? "Update Expense" : "Add Expense"}
           </Button>
 
           <Button
             type="button"
-            variant={onClose ? "outline" : "danger"}
+            variant="danger"
             disabled={isSubmitting}
             onClick={() => {
               if (onClose) {

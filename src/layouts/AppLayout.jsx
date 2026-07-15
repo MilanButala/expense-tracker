@@ -8,8 +8,8 @@ const AppLayout = () => {
   return (
     <>
       <Header />
-      <main className="px-4 lg:px-6 py-10 dark:bg-gray-800">
-        <section className="mx-auto max-w-screen-xl">
+      <main className="px-4 lg:px-6 py-10">
+        <section className="mx-auto max-w-screen-xl ">
           <Suspense fallback={<Loader />}>
             <Outlet />
           </Suspense>

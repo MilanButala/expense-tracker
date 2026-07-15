@@ -9,7 +9,9 @@ const Expenses = () => {
         title="Expenses"
         subTitle="Every entry, in order. Filter, edit, or strike a line."
       />
-      <ViewExpenses />
+      <div className="bg-lightgray dark:bg-gray-400 p-6 rounded-2xl">
+        <ViewExpenses />
+      </div>
     </>
   )
 }

@@ -8,17 +8,16 @@ const Table = ({
   footer,
 }) => {
   return (
-    <div className={`overflow-x-auto rounded-xl border border-border shadow-sm ${className}`}
+    <div className={`overflow-x-auto rounded-xl shadow-sm ${className}`}
     >
       <table className="min-w-full divide-y divide-border">
-        <thead className="bg-surface">
+        <thead className="bg-primary dark:bg-card">
           <tr>
             {columns.map((column) => (
               <th
                 key={column.accessor}
-                className={`px-4 py-3 text-sm font-semibold text-text-primary ${
-                  column.align || "text-left"
-                }`}
+                className={`px-4 py-3 text-sm font-semibold text-white ${column.align || "text-left"
+                  }`}
               >
                 {column.header}
               </th>
@@ -33,9 +32,8 @@ const Table = ({
                 {columns.map((column) => (
                   <td
                     key={column.accessor}
-                    className={`px-4 py-3 text-sm text-text-secondary ${
-                      column.align || "text-left"
-                    }`}
+                    className={`px-4 py-3 text-sm text-text-secondary ${column.align || "text-left"
+                      }`}
                   >
                     {column.render
                       ? column.render(row)

@@ -10,9 +10,11 @@ const AddExpenses = () => {
         title="Add an expense"
         subTitle="Log it while it's fresh. It lands at the top of the ledger."
       />
-      <Card>
-        <CreateExpenses />
-      </Card>
+      <div className="bg-lightgray dark:bg-gray-400 p-6 rounded-2xl">
+        <Card>
+          <CreateExpenses />
+        </Card>
+      </div>
     </>
   )
 }
